@@ -1,3 +1,4 @@
+
 # 데이터설명 : 고객의 신상정보 데이터를 통한 회사 서비스 이탈 예측(종속변수 : Exited)
 # 데이터출처 : https://www.kaggle.com/shubh0799/churn-modelling
 # 문제타입 : 분류유형
@@ -14,7 +15,7 @@ subData = pd.read_csv('https://raw.githubusercontent.com/Datamanim/datarepo/main
 # 1-1. 결측값 파악: 없음
 print(trainData.isnull().sum().sum(), testData.isnull().sum().sum())
 
-# 1-2. 데이터 타입 파악: 종속변수 3개 -> get_dummies 필요
+# 1-2. 데이터 타입 파악: 독립변수 3개 -> get_dummies 필요
 object_cols = trainData.select_dtypes('object').columns
 object_cols_test = testData.select_dtypes('object').columns
 print(object_cols, object_cols_test)
