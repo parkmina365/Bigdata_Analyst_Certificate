@@ -15,7 +15,7 @@ subData = pd.read_csv('https://raw.githubusercontent.com/Datamanim/datarepo/main
 # 1-1. 결측값 파악: 없음
 print(trainData.isnull().sum().sum(), testData.isnull().sum().sum())
 
-# 1-2. 데이터 타입 파악: 독립변수 3개 -> get_dummies 필요
+# 1-2. object인 열 파악: 독립변수 3개 -> get_dummies 필요
 object_cols = trainData.select_dtypes('object').columns
 object_cols_test = testData.select_dtypes('object').columns
 print(object_cols, object_cols_test)
