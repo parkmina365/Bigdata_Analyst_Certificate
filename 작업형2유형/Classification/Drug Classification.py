@@ -72,3 +72,4 @@ rf.fit(X, y)
 subData['0'] = rf.predict(testData)
 subData.to_csv('수험번호.csv', index=False)  # 소요시간: 0.4초
 
+  
