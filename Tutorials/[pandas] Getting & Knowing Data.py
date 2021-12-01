@@ -1,5 +1,5 @@
 
-# Q1~19 Getting & Knowing Data
+# Q1~Q19 Getting & Knowing Data
 
 # Q1~Q8
 # Q1. 데이터를 로드하라. 데이터는 \t을 기준으로 구분되어있다.
@@ -67,3 +67,4 @@ print(df['읍면동명'].nunique())
 # Q19. 읍면동명 컬럼의 유일값을 모두 출력하라
 print(df['읍면동명'].unique())
   
+ 
