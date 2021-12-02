@@ -34,9 +34,8 @@ print(X.shape, testData.shape, y.shape)
 # --------------------------------- 
 # 2. 전처리
 # 2-1. 종속변수 Label Encoding
-from sklearn.preprocessing import LabelEncoder
-le = LabelEncoder()
-y = pd.Series(le.fit_transform(y))
+dic = {'B':0, 'M':1}
+y = y.map(lambda x:dic[x])
 
 # 2-2. scaling
 from sklearn.preprocessing import StandardScaler
@@ -60,8 +59,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import f1_score, accuracy_score, roc_auc_score
 rf = RandomForestClassifier()
 rf.fit(X_train, y_train)
-print(f1_score(rf.predict(X_test), y_test))  # 0.9696969696969697
-print(accuracy_score(rf.predict(X_test), y_test))  # 0.978021978021978
+print(f1_score(rf.predict(X_test), y_test))                  # 0.9696969696969697
+print(accuracy_score(rf.predict(X_test), y_test))            # 0.978021978021978
 print(roc_auc_score(y_test, rf.predict_proba(X_test)[:,1]))  # 0.9984520123839009
       
       
