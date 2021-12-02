@@ -12,11 +12,11 @@ subData= pd.read_csv('https://raw.githubusercontent.com/Datamanim/datarepo/main/
 
 # ---------------------------------
 # 1. 데이터 파악
-# 1-1. 결측값 파악: 'Money_Value': 1개 -> dropna
+# 1-1. 결측값 파악: 'Money_Value': 1개 -> fillna(df.mean())
 print(trainData.isnull().sum().sum(), testData.isnull().sum().sum())
-print(trainData.isnull().sum().sum()/len(trainData)) # null 값의 비중이 매우 낮은편
-trainData.dropna(axis=1, inplace=True)
-testData.dropna(axis=1, inplace=True)
+print(trainData.isnull().sum()/len(trainData)) # null 값의 비중이 매우 낮은편
+trainData.fillna(trainData.mean(), inplace=True)
+testData.fillna(testData.mean(), inplace=True)
 print(trainData.isnull().sum().sum(), testData.isnull().sum().sum())
 
 # 1-2. object 열 파악: 독립변수 1개. 'LOCATION_ID': int로 보이나 object -> 문자가 포함됨
@@ -28,12 +28,7 @@ print(testData.LOCATION_ID.unique())
 
 # 1-3. 제외 열 파악
 # 'LOCATION_ID': 문자열 섞임. 우편번호 개념이므로 의미 없는 값
-# 'PROB', 'Prob': 거의 같은 값. 한 열만 사용해도 됨
-print(trainData.columns.sort_values())
-print(testData.columns.sort_values())
-X = trainData[['PROB', 'Prob']]
-print(len(X[X.Prob==X.PROB])/len(X))  # 0.917741935483871
-drop_col = ['LOCATION_ID', 'Prob']
+drop_col = ['LOCATION_ID']
 trainData.drop(columns=drop_col, inplace=True)
 testData.drop(columns=drop_col, inplace=True)
 
