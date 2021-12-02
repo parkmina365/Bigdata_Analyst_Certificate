@@ -1,7 +1,7 @@
 
 # 데이터설명 : 핸드폰 가격예측(종속변수 : price_range)
 # 데이터출처 : https://www.kaggle.com/iabhishekofficial/mobile-price-classification?select=train.csv
-# 문제타입 : 분류유형
+# 문제타입 : 분류유형(다중)
 # 평가지표 : accuracy
 
 import pandas as pd
