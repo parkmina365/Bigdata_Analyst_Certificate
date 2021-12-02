@@ -1,7 +1,7 @@
 
 # 데이터설명 : 투약하는 약을 분류(종속변수 : Drug)
 # 데이터출처 : https://www.kaggle.com/prathamtripathi/drug-classification
-# 문제타입 : 분류유형
+# 문제타입 : 분류유형(다중)
 # 평가지표 : accuracy
 
 import pandas as pd 
