@@ -1,5 +1,5 @@
 
-# 데이터설명 : 대학원 입학 가능성 예측문제(종속변수 : price)
+# 데이터설명 : 현대차 스펙에 따른 가격 예측문제(종속변수 : price)
 # 데이터출처 : https://www.kaggle.com/mysarahmadbhat/hyundai-used-car-listing
 # 문제타입 : 회귀유형
 # 평가지표 : r2 score
@@ -34,8 +34,13 @@ print(X.shape, y.shape, testData.shape)
 # --------------------------------- 
 # 2. 전처리
 # 2-1. pd.get_dummies
-print(trainData.fuelType.value_counts())                # nunique: 3
-print(testData.fuelType.value_counts())                 # nunique: 4
+obj_cols = trainData.select_dtypes('object').columns.to_list()
+obj_cols_t = testData.select_dtypes('object').columns.to_list()
+for i,v in enumerate(obj_cols):
+    print(v, trainData[obj_cols[i]].nunique())
+for i,v in enumerate(obj_cols_t):
+    print(v, testData[obj_cols_t[i]].nunique())         # object 열의 nunique가 다름
+
 X = pd.get_dummies(X)
 testData = pd.get_dummies(testData)
 print(len(trainData.columns) == len(testData.columns))  # False
@@ -93,6 +98,6 @@ for i in [rf, gb, ab, bg, dt, lr, st, vt]:
 vt = VotingRegressor([('bg', BaggingRegressor()), ('rf', RandomForestRegressor())])
 vt.fit(X, y)
 subData['0'] = vt.predict(testData)
-subData.to_csv('수험번호.csv', index=False)               # 소요시간: 3.5초
+subData.to_csv('수험번호.csv', index=False)               # 소요시간: 8.6초
 
   
