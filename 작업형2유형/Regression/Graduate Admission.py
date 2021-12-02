@@ -49,18 +49,38 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 # --------------------------------- 
 # 4. modeling, 학습, 예측, 평가
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, AdaBoostRegressor, BaggingRegressor,\
+    StackingRegressor, VotingRegressor
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 rf = RandomForestRegressor()
-rf.fit(X_train, y_train)
-print(r2_score(rf.predict(X_test), y_test))   # 0.7141623522486027
+gb = GradientBoostingRegressor()
+ab = AdaBoostRegressor()
+bg = BaggingRegressor()
+dt = DecisionTreeRegressor()
+lr = LinearRegression()
+st = StackingRegressor([('gb', gb), ('lr', lr)])
+vt = VotingRegressor([('rf', rf), ('lr', lr)])
 
+for i in [rf, gb, ab, bg, dt, lr, st, vt]:
+    i.fit(X_train, y_train)
+    print(i.__class__.__name__, r2_score(i.predict(X_test), y_test))
+    
+# RandomForestRegressor 0.7214050581297056
+# GradientBoostingRegressor 0.7275072304922003
+# AdaBoostRegressor 0.6515247728629934
+# BaggingRegressor 0.6901237973470049
+# DecisionTreeRegressor 0.5440878612135013
+# LinearRegression 0.7529249518456086
+# StackingRegressor 0.7484764470365417
+# VotingRegressor 0.7437236342975894
 
 # --------------------------------- 
 # 5. 제출
-rf = RandomForestRegressor()
-rf.fit(X, y)
-subData['0'] = rf.predict(testData)
+lr = LinearRegression()
+lr.fit(X, y)
+subData['0'] = lr.predict(testData)
 subData.to_csv('수험번호.csv', index=False)
 
   
