@@ -82,7 +82,7 @@ vt = VotingRegressor([('bg', bg), ('rf', rf)])
 
 for i in [rf, gb, ab, bg, dt, lr, st, vt]:
     i.fit(X_train, y_train)
-    print(i.__class__.__name__, r2_score(i.predict(X_test), y_test))
+    print(i.__class__.__name__, r2_score(y_test, i.predict(X_test)))
 
 # RandomForestRegressor 0.9518167304061246
 # GradientBoostingRegressor 0.9443280630183511
