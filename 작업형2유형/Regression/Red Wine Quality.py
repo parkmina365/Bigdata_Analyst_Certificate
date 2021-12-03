@@ -70,7 +70,7 @@ xgb = XGBRegressor()
 st = StackingRegressor([('bg', bg), ('rf', rf)])
 vt = VotingRegressor([('bg', bg), ('rf', rf)])
 
-for i in [rf, gb, ab, bg, dt, lr, st, vt]:
+for i in [rf, gb, ab, bg, dt, lr, svr, kr, xgb, st, vt]:
     i.fit(X_train, y_train)
     print(i.__class__.__name__, r2_score(y_test, i.predict(X_test)))
    
