@@ -53,13 +53,20 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, A
     StackingRegressor, VotingRegressor
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.linear_model import LinearRegression
+from sklearn.svm import SVR
+from sklearn.neighbors import KNeighborsRegressor
+from xgboost import XGBRegressor 
 from sklearn.metrics import r2_score
+
 rf = RandomForestRegressor()
 gb = GradientBoostingRegressor()
 ab = AdaBoostRegressor()
 bg = BaggingRegressor()
 dt = DecisionTreeRegressor()
 lr = LinearRegression()
+svr = SVR()
+kr = KNeighborsRegressor()
+xgb = XGBRegressor()
 st = StackingRegressor([('bg', bg), ('rf', rf)])
 vt = VotingRegressor([('bg', bg), ('rf', rf)])
 
@@ -67,14 +74,17 @@ for i in [rf, gb, ab, bg, dt, lr, st, vt]:
     i.fit(X_train, y_train)
     print(i.__class__.__name__, r2_score(y_test, i.predict(X_test)))
    
-# RandomForestRegressor 0.4707803811087202
-# GradientBoostingRegressor 0.4097252798888631
-# AdaBoostRegressor 0.34572272357726197
-# BaggingRegressor 0.41796756804720614
-# DecisionTreeRegressor -0.005168703831052168
+# RandomForestRegressor 0.46939813216797166
+# GradientBoostingRegressor 0.41327596143189793
+# AdaBoostRegressor 0.37020582160683524
+# BaggingRegressor 0.40984671354732805
+# DecisionTreeRegressor 0.011868053860999539
 # LinearRegression 0.4069767169663012
-# StackingRegressor 0.4852895378062537
-# VotingRegressor 0.46987501941036847
+# SVR 0.40333253568677163
+# KNeighborsRegressor 0.2703724572417312
+# XGBRegressor 0.3995088697553514
+# StackingRegressor 0.5024251302163755
+# VotingRegressor 0.4858009219508218
 
 
 # --------------------------------- 
